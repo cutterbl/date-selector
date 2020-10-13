@@ -29,7 +29,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
       # Install all dependencies
       - run: npm install
-
+      # Setup Credentials
       - name: Setup git creds
         env:
           config_email: ${{secrets.GIT_CONFIG_EMAIL}}
@@ -37,16 +37,20 @@ jobs:
         run: |
           git config --local user.email ${config_email}
           git config --local user.name ${config_un}
+      # Bump the versioning and gen the changelog
       - name: Create the release
         run: npm run release
+      - name: Push tag and file changes to repository
+        run: git push --follow-tags origin master
+      # Build the package
+      - name: Build fresh for new package with updated version numbers
+        run: npm run build
+      # Publish the package
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{secrets.NPM_TOKEN}}
+      # Create ghpages
       - name: Create Storybook GitHub Pages
         run: npm run deploy-storybook -- --ci
         env:
           GH_TOKEN: ${{secrets.GIT_CONFIG_USERNAME}}:${{secrets.GH_TOKEN}}
-      - name: Push tag and file changes to repository
-        run: git push --follow-tags origin master
-      - name: Build fresh for new package with updated version numbers
-        run: npm run build
-      - uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{secrets.NPM_TOKEN}}
