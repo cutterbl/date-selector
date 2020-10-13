@@ -32,12 +32,14 @@ jobs:
       # Setup Credentials
       - name: Setup git creds
         env:
-          GH_TOKEN: ${{secrets.GIT_CONFIG_USERNAME}}:${{secrets.GH_TOKEN}}
+          GH_TOKEN: ${{secrets.GH_TOKEN}}
           config_email: ${{secrets.GIT_CONFIG_EMAIL}}
           config_un: ${{secrets.GIT_CONFIG_USERNAME}}
         run: |
           git config --local user.email ${config_email}
           git config --local user.name ${config_un}
+      - name: Deploy Storybook to GitHub pages
+        run: npm run deploy-storybook -- --ci
       # Bump the versioning and gen the changelog
       - name: Create the release
         run: npm run release
