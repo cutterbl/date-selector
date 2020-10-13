@@ -71,7 +71,6 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "if git-branch-is master; then npm run coverage; fi",
       "commit-msg": "if git-branch-is master; then commitlint -E HUSKY_GIT_PARAMS; fi"
     }
   },
