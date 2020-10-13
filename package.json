@@ -10,7 +10,7 @@
     "prettier": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "keywords": [
     "React",
@@ -41,6 +41,7 @@
     "@storybook/addon-essentials": "^6.0.26",
     "@storybook/addon-links": "^6.0.26",
     "@storybook/react": "^6.0.26",
+    "@storybook/storybook-deployer": "2.8.7",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
     "autoprefixer": "9.8.0",

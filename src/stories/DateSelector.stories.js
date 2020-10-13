@@ -4,7 +4,7 @@ import DateSelector from '../DateSelector.component';
 import mdx from './DateSelector.mdx';
 
 export default {
-  title: 'DateSelector',
+  title: 'Basics',
   component: DateSelector,
   parameters: {
     docs: {
@@ -23,3 +23,4 @@ export const Basic = () => {
     </Fragment>
   );
 };
+Basic.storyName = 'The Control';
