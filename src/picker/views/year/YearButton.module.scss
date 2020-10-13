@@ -1,0 +1,16 @@
+@import '../shared.module.scss';
+
+.yearWrapper {
+  @extend .wrapper;
+}
+
+.thisDay {
+  &::after {
+    bottom: -0.9rem;
+  }
+}
+.yearButton {
+  @extend .button;
+  width: 20%;
+  height: 3.5rem;
+}

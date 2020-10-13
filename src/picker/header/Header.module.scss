@@ -1,0 +1,20 @@
+@import '../views/shared.module.scss';
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.button {
+  position: relative;
+  height: 2rem;
+}
+
+.navButton {
+  width: 2rem;
+}
+
+.label {
+  flex-grow: 1;
+}

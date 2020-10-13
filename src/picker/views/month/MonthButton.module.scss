@@ -1,0 +1,17 @@
+@import '../shared.module.scss';
+
+.monthWrapper {
+  @extend .wrapper;
+}
+
+.monthButton {
+  @extend .button;
+  width: 25%;
+  height: 3.5rem;
+}
+
+.thisDay {
+  &::after {
+    bottom: -0.9rem;
+  }
+}

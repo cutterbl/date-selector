@@ -1,0 +1,17 @@
+@import '../shared.module.scss';
+
+.dayWrapper {
+  @extend .wrapper;
+}
+
+.dayButton {
+  @extend .button;
+  width: 2rem;
+  height: 2rem;
+}
+
+.thisDay {
+  &::after {
+    bottom: -0.2rem;
+  }
+}
