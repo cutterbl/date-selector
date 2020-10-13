@@ -43,9 +43,6 @@ jobs:
         run: npm run release
       - name: Push tag and file changes to repository
         run: git push --follow-tags origin master
-      # Create ghpages
-      - name: Create Storybook GitHub Pages
-        run: npm run deploy-storybook -- --ci
       # Build the package
       - name: Build fresh for new package with updated version numbers
         run: npm run build
