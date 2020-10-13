@@ -29,6 +29,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
       # Install all dependencies
       - run: npm install
+      # Deploy Storybook to GitHub pages
+      - name: Deploy Storybook to GitHub pages
+        run: npm run deploy-storybook -- --ci
+        env:
+          GH_TOKEN: ${{github.actor}}:${{secrets.GH_TOKEN}}
       # Setup Credentials
       - name: Setup git creds
         env:
