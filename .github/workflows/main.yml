@@ -32,7 +32,7 @@ jobs:
       # Setup Credentials
       - name: Setup git creds
         env:
-          GH_TOKEN: ${{secrets.GH_TOKEN}}
+          GH_TOKEN: ${{secrets.GIT_CONFIG_USERNAME}}:${{secrets.GH_TOKEN}}
           config_email: ${{secrets.GIT_CONFIG_EMAIL}}
           config_un: ${{secrets.GIT_CONFIG_USERNAME}}
         run: |
