@@ -32,7 +32,7 @@ jobs:
       # Setup Credentials
       - name: Setup git creds
         env:
-          GH_TOKEN: ${{secrets.GH_TOKEN}}
+          GH_TOKEN: ${{secrets.GIT_CONFIG_USERNAME}}:${{secrets.GH_TOKEN}}
           config_email: ${{secrets.GIT_CONFIG_EMAIL}}
           config_un: ${{secrets.GIT_CONFIG_USERNAME}}
         run: |
@@ -43,6 +43,9 @@ jobs:
         run: npm run release
       - name: Push tag and file changes to repository
         run: git push --follow-tags origin master
+      # Create ghpages
+      - name: Create Storybook GitHub Pages
+        run: npm run deploy-storybook -- --ci
       # Build the package
       - name: Build fresh for new package with updated version numbers
         run: npm run build
@@ -50,7 +53,4 @@ jobs:
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{secrets.NPM_TOKEN}}
-      # Create ghpages
-      - name: Create Storybook GitHub Pages
-        run: npm run deploy-storybook -- --ci
       # Complete
