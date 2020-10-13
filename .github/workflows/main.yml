@@ -52,5 +52,3 @@ jobs:
       # Create ghpages
       - name: Create Storybook GitHub Pages
         run: npm run deploy-storybook -- --ci
-        env:
-          GH_TOKEN: ${{secrets.GIT_CONFIG_USERNAME}}:${{secrets.GH_TOKEN}}
