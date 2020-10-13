@@ -10,6 +10,7 @@
     "prettier": "prettier --write 'src/**/*.js'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "deploy-storybook": "storybook-to-ghpages"
   },
   "keywords": [
@@ -134,6 +135,11 @@
         "sentence-case"
       ]
     }
+  },
+  "storybook-deployer": {
+    "gitUsername": "cutterbl",
+    "gitEmail": "no.junk@cutterscrossing.com",
+    "commitMessage": "ci: Deploy Storybook to GitHub Pages"
   },
   "eslintConfig": {
     "extends": "react-app",

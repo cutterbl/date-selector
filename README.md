@@ -2,4 +2,4 @@
 
 A React date selector control using Luxon.
 
-Check out the [site](http://cutterscrossing.com/date-selector/) for more information.
+Check out the [site](https://cutterscrossing.com/date-selector/) for more information.
