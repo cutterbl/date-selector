@@ -40,7 +40,9 @@ jobs:
       - name: Create the release
         run: npm run release
       - name: Create Storybook GitHub Pages
-        run: npm run deploy-storybook
+        run: npm run deploy-storybook -- --ci
+        env:
+          GH_TOKEN: ${{secrets.GIT_CONFIG_USERNAME}}:${{secrets.GH_TOKEN}}
       - name: Push tag and file changes to repository
         run: git push --follow-tags origin master
       - name: Build fresh for new package with updated version numbers
