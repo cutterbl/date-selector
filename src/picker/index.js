@@ -3,7 +3,9 @@
  */
 import Container from './container/Container.component';
 import Header from './header/Header.component';
-import Label from './header/Label.component';
+import LabelButton from './header/LabelButton.component';
+import PreviousButton from './header/PreviousButton.component';
+import NextButton from './header/NextButton.component';
 import Views from './views/Views.component';
 import DayView from './views/day/DayView.component';
 import DayButton from './views/day/DayButton.component';
@@ -15,7 +17,9 @@ import YearButton from './views/year/YearButton.component';
 export {
   Container,
   Header,
-  Label,
+  LabelButton,
+  PreviousButton,
+  NextButton,
   Views,
   DayView,
   DayButton,

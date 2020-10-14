@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 
 import { useDateSelector } from '../../../context/DateSelector.context';
+import YearButtonWrapper from './YearButtonWrapper.component';
 import useOnClick from '../../../hooks/callbacks/useOnYearButtonClick.callback';
-import YearButton from './YearButton.component';
 
 export default function YearView() {
   const {
@@ -23,7 +23,7 @@ export default function YearView() {
   return (
     <Fragment>
       {range?.map((date) => (
-        <YearButton
+        <YearButtonWrapper
           {...{
             date,
             handleOnClick,

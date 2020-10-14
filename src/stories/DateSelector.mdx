@@ -3,8 +3,55 @@ import DateSelector from '../DateSelector.component';
 
 # DateSelector
 
-You can expand the `code` on the section below for a simple usage example. It uses `useState` to track the value you select, and your `onChange` method to control the state. You're never resetting the value, until you actually select a 'date'. The `value` is a [Luxon](https://moment.github.io/luxon/) `DateTime` object that you can then display or manipulate in anyway you like.
+You can expand the `code` of any section below for a simple usage example. It uses `useState` to track the value you select, and your `onChange` method to control the state. You're never resetting the value, until you actually select a 'date'. The `value` is a [Luxon](https://moment.github.io/luxon/) `DateTime` object that you can then display or manipulate in anyway you like.
+
+## Basic Control
+
+Simplest utilization includes a `value` and an `onChange` prop. This example uses `useState` to track the `value` you select, and your `onChange` method to control the state. You're never resetting the `value`, until you actually select a 'date'. The `value` is a [Luxon](https://moment.github.io/luxon/) `DateTime` object that you can then display or manipulate in anyway you like.
 
 <Canvas>
   <Story id="basics--basic" />
+</Canvas>
+
+## defaultDate
+
+By providing a `defaultDate`, not only can you start your calendar display on a specific date, but you can also use it to specify the locale and timezone being used. By doing so, all values pass to your `onChange` handler will also be in the same locale and timezone. For users of modern browsers, this means that the display is i18n by default.
+
+```js
+const defaultDate = DateTime.fromISO(new Date().toISOString(), {
+  locale: 'fr',
+  zone: 'Europe/Paris',
+});
+```
+
+<Canvas>
+  <Story id="basics--default-date" />
+</Canvas>
+
+## isDateDisabled
+
+You can provide a function to disable any date on the calendar the meet your criteria.
+
+```js
+isDateProvided = (date<DateTime>) => Boolean
+```
+
+<Canvas>
+  <Story id="basics--is-date-disabled" />
+</Canvas>
+
+## minDate
+
+You can provide a [Luxon](https://moment.github.io/luxon/) DateTime object, defining the minimum selectable date. This means that dates on the calendar at or before that date will autmatically be disabled.
+
+<Canvas>
+  <Story id="basics--min-date" />
+</Canvas>
+
+## maxDate
+
+You can provide a [Luxon](https://moment.github.io/luxon/) DateTime object, defining the maximum selectable date. This means that dates on the calendar at or after that date will autmatically be disabled.
+
+<Canvas>
+  <Story id="basics--max-date" />
 </Canvas>

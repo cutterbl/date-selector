@@ -9,9 +9,7 @@ export default function ({ activeDate, setShowCal, setActiveDate, setView }) {
         year: date.year,
       };
       const newDate = activeDate.set(set);
-      if (+newDate !== +activeDate) {
-        setShowCal(false);
-      }
+      setShowCal(false);
       setActiveDate((prev) => (+newDate !== +prev ? newDate : prev));
       setView('month');
     },

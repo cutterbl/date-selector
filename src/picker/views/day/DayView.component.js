@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 
 import { useDateSelector } from '../../../context/DateSelector.context';
+import DayButtonWrapper from './DayButtonWrapper.component';
 import useOnClick from '../../../hooks/callbacks/useOnDayButtonClick.callback';
-import DayButton from './DayButton.component';
 
 export default function DayView() {
   const {
@@ -23,7 +23,7 @@ export default function DayView() {
   return (
     <Fragment>
       {range?.map((date) => (
-        <DayButton
+        <DayButtonWrapper
           {...{
             date,
             handleOnClick,

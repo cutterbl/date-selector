@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 
-import MonthButton from './MonthButton.component';
 import { useDateSelector } from '../../../context/DateSelector.context';
+import MonthButtonWrapper from './MonthButtonWrapper.component';
 import useOnClick from '../../../hooks/callbacks/useOnMonthButtonClick.callback';
 
 export default function MonthView() {
@@ -23,7 +23,7 @@ export default function MonthView() {
   return (
     <Fragment>
       {range?.map((date) => (
-        <MonthButton
+        <MonthButtonWrapper
           {...{
             date,
             handleOnClick,

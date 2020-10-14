@@ -7,10 +7,12 @@ import { Container } from './picker';
 
 const DateSelector = ({
   defaultDate = DateTime.local().startOf('day'),
+  defaultView = 'day',
   value,
   minDate,
   maxDate,
-  defaultView = 'day',
+  messages,
+  components,
   onChange = () => {},
   isDateDisabled = () => false,
 } = {}) => {
@@ -22,6 +24,8 @@ const DateSelector = ({
         minDate,
         maxDate,
         defaultView,
+        messages,
+        components,
         onChange,
         isDateDisabled,
       }}
@@ -36,6 +40,8 @@ DateSelector.propTypes = {
   minDate: PropTypes.instanceOf(DateTime),
   maxDate: PropTypes.instanceOf(DateTime),
   defaultView: PropTypes.oneOf(['day', 'month', 'year']),
+  messages: PropTypes.object,
+  components: PropTypes.object,
   onChange: PropTypes.func,
   isDateDisabled: PropTypes.func,
 };

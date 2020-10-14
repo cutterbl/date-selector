@@ -6,7 +6,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 
 The `DateSelector` is a simple control for picking a date from a small calendar control. This can be embedded in your page, placed in a modal or popper control, whatever you like.
 
-## Installation
+## Installation and Usage
 
 Simply install the package in your project:
 
@@ -22,12 +22,12 @@ import DateSelector from '@cxing/date-selector';
 
 All date values are expected to be [Luxon](https://moment.github.io/luxon/) `DateTime` objects. Luxon is the modern replacement for [Moment.js](https://momentjs.com/), developed by the same team.
 
+## I18n, Timezones, and Browser Support
+
+Because we're using [Luxon](https://moment.github.io/luxon/), under the hood, you get full i18n and timezone support when you use the `defaultDate` prop (unless, of course, you're using IE). Make sure to read the rest of the documentation, where we give an example of this.
+
+[Luxon](https://moment.github.io/luxon/) is made for modern browsers. If you require support in [IE you'll need polyfills](https://moment.github.io/luxon/docs/manual/install.html#internet-explorer), and still won't get full i18n. Best bet? Don't support IE. Help inform the world of it's evil. Even [Microsoft is giving up on it](https://techcommunity.microsoft.com/t5/microsoft-365-blog/microsoft-365-apps-say-farewell-to-internet-explorer-11-and/ba-p/1591666).
+
 ## WATCH THIS SPACE!!!
 
-There's more to come. We'll fill you in as we progress
-
-### TODO
-
-- [ ] ARIA attributes on different components
-- [ ] Min/Max Date Support
-- [ ] isDateDisabled Support
+I have a few other projects in the works that will utilize this component

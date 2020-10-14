@@ -4,7 +4,9 @@
 .github
 # common development code stores
 src
+configs
 node_modules
+.storybook
 # various build configuration files
 .gitignore
 

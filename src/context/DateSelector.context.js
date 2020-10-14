@@ -2,6 +2,9 @@ import React, { createContext, useState, useContext, useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { DateTime } from 'luxon';
 
+import { mixMessages } from '../picker/utils';
+import { mixComponents } from '../components';
+
 const DateSelectorContext = createContext();
 
 export function DateSelectorProvider({
@@ -10,12 +13,16 @@ export function DateSelectorProvider({
   minDate,
   maxDate,
   defaultView,
+  messages,
+  components,
   onChange,
   isDateDisabled,
   ...props
 }) {
-  const [today] = useState(defaultDate || DateTime.local().startOf('day'));
-  const [activeDate, setActiveDate] = useState(value || today);
+  const [today] = useState(
+    defaultDate?.startOf('day') || DateTime.local().startOf('day')
+  );
+  const [activeDate, setActiveDate] = useState(value?.startOf('day') || today);
   const [showCal, setShowCal] = useState(false);
   const [view, setView] = useState(defaultView);
   const [range, setRange] = useState();
@@ -35,6 +42,8 @@ export function DateSelectorProvider({
       minDate,
       maxDate,
 
+      messages: mixMessages({ messages }),
+      components: mixComponents({ components }),
       onChange,
       isDateDisabled,
     }),
@@ -52,6 +61,8 @@ export function DateSelectorProvider({
       minDate,
       maxDate,
 
+      messages,
+      components,
       onChange,
       isDateDisabled,
     ]
@@ -65,6 +76,7 @@ DateSelectorProvider.propTypes = {
   minDate: PropTypes.instanceOf(DateTime),
   maxDate: PropTypes.instanceOf(DateTime),
   defaultView: PropTypes.oneOf(['day', 'month', 'year']),
+  messages: PropTypes.object,
   onChange: PropTypes.func,
   isDateDisabled: PropTypes.func,
 };
