@@ -10,6 +10,6 @@ DateSelector.version = packageVersion;
 
 export { moduleName, packageVersion };
 
-export { getRange, mergeDates } from './picker/utils/luxonUtils';
+export { getRange, mergeDates, isInRange } from './picker/utils/luxonUtils';
 
 export { dateProps, datePickerProps } from './picker/utils/propTypes';

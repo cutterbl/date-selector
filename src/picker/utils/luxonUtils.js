@@ -1,8 +1,11 @@
+import { DateTime } from 'luxon';
+
 function createRange({ first, last, period = 'day' }) {
   if (!first || !last) return [];
   const range = [first];
   while (+range[range.length - 1] < +last) {
-    const day = range[range.length - 1].plus({ [period]: 1 });
+    const [currentLast] = range.slice(-1);
+    const day = currentLast.plus({ [period]: 1 });
     range.push(day);
   }
   return range;
@@ -11,6 +14,9 @@ function createRange({ first, last, period = 'day' }) {
 function getFirstDayOfWeek(fromDate) {
   // Luxon uses Monday as first day, so we adjust
   if (!fromDate?.isValid) return;
+  if (fromDate.weekday === 7) {
+    return fromDate;
+  }
   const firstDayOfWeek = fromDate.startOf('week');
   return firstDayOfWeek.minus({ day: 1 });
 }
@@ -24,30 +30,33 @@ function getFirstDisplayDay({ fromDate, period = 'month' }) {
 function getLastDayOfWeek(fromDate) {
   // Luxon uses Monday as first day, so we adjust
   if (!fromDate?.isValid) return;
-  const lastDayOfWeek = fromDate.endOf('week');
-  return lastDayOfWeek.minus({ day: 2 });
-}
-
-function getLastDisplayDay({ fromDate, period = 'month' }) {
-  if (!fromDate?.isValid) return;
-  const lastDayOfMonth = fromDate.endOf(period);
-  return getLastDayOfWeek(lastDayOfMonth);
+  // if it's already Saturday, return it
+  if (fromDate.weekday === 6) {
+    return fromDate;
+  }
+  // if it's between Monday and Friday, set it to Saturday
+  if (fromDate.weekday < 6) {
+    return fromDate.set({ weekday: 6 });
+  }
+  // if it's Sunday, add a day and then set it to Saturday
+  return fromDate.plus({ day: 1 }).set({ weekday: 6 });
 }
 
 function getDisplayDaysRange(fromDate) {
   if (!fromDate?.isValid) return [];
   const first = getFirstDisplayDay({ fromDate });
-  const last = getLastDisplayDay({ fromDate });
+  const { daysInMonth } = fromDate;
+  const last = getLastDayOfWeek(fromDate.set({ day: daysInMonth }));
   return createRange({ first, last });
 }
 
 function getDisplayMonthsRange(fromDate) {
   if (!fromDate?.isValid) return [];
   const first = fromDate.startOf('year');
-  const last = fromDate.endOf('year');
+  // not sure why it's off, but it is, so we take off a month...
+  const last = fromDate.endOf('year').minus({ month: 1 });
   const range = createRange({ first, last, period: 'month' });
-  // not sure why it's off, but it is, so...
-  return range.slice(0, range.length - 1);
+  return range;
 }
 
 function getStartingYear({ fromDate, range }) {
@@ -70,6 +79,13 @@ export function getRange({ fromDate, period = 'day' }) {
   if (period === 'day') return getDisplayDaysRange(fromDate);
   if (period === 'month') return getDisplayMonthsRange(fromDate);
   if (period === 'year') return getDisplayYearsRange({ fromDate });
+}
+
+export function isInRange({ fromDate, range = [] }) {
+  if (!fromDate) return;
+  const [first] = range;
+  const [last] = range.slice(-1);
+  return +fromDate >= +first && +fromDate <= +last;
 }
 
 const dateSteps = [

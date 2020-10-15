@@ -5,7 +5,9 @@ export default function ({ activeDate, view, setRange, setShowCal, onChange }) {
   useEffect(() => {
     if (activeDate && view) {
       const newRange = getRange({ fromDate: activeDate, period: view });
-      setRange(newRange);
+      setRange((range) =>
+        JSON.stringify(newRange) === JSON.stringify(range) ? range : newRange
+      );
       setShowCal(() => true);
     }
   }, [activeDate, setShowCal, view, setRange, onChange]);

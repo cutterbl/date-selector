@@ -5,13 +5,13 @@ import DayView from './day/DayView.component';
 import MonthView from './month/MonthView.component';
 import YearView from './year/YearView.component';
 
-export default function Views() {
+export default function Views({ value }) {
   const { showCal, view } = useDateSelector();
 
   if (!showCal) return null;
 
   if (view === 'day') {
-    return <DayView />;
+    return <DayView {...{ value }} />;
   }
   if (view === 'month') {
     return <MonthView />;

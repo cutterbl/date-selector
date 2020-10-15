@@ -1,20 +1,19 @@
 import { useCallback } from 'react';
 
-import { mergeDates } from '../../picker/utils';
+import { isInRange } from '../../picker/utils/luxonUtils';
 
-export default function ({ setShowCal, activeDate, setActiveDate, onChange }) {
+export default function ({ range, setShowCal, setActiveDate, onChange }) {
   return useCallback(
     (date) => {
       // don't hide it unless it changes
-      if (+date !== +activeDate) {
+      if (!isInRange({ fromDate: date, range })) {
         setShowCal(false);
       }
-      const newDate = mergeDates({ fromDate: date, activeDate, start: 'hour' });
       setActiveDate((prev) => {
         return +date !== +prev ? date : prev;
       });
-      onChange(newDate);
+      onChange(date);
     },
-    [setShowCal, activeDate, setActiveDate, onChange]
+    [range, setShowCal, setActiveDate, onChange]
   );
 }

@@ -6,7 +6,7 @@ import { useDateSelector } from '../../context/DateSelector.context';
 import useUpdateRange from '../../hooks/effects/useUpdateRange.effect';
 import styles from './Container.module.scss';
 
-export default function Container() {
+export default function Container({ value }) {
   const {
     activeDate,
     view,
@@ -20,7 +20,7 @@ export default function Container() {
   return (
     <div className={styles.container}>
       <Header />
-      <Views />
+      <Views {...{ value }} />
     </div>
   );
 }

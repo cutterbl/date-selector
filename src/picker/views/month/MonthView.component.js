@@ -14,6 +14,7 @@ export default function MonthView() {
   } = useDateSelector();
 
   const handleOnClick = useOnClick({
+    range,
     activeDate,
     setShowCal,
     setActiveDate,

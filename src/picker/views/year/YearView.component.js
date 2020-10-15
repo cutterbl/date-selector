@@ -14,6 +14,7 @@ export default function YearView() {
   } = useDateSelector();
 
   const handleOnClick = useOnClick({
+    range,
     activeDate,
     setShowCal,
     setActiveDate,

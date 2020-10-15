@@ -30,7 +30,7 @@ const DateSelector = ({
         isDateDisabled,
       }}
     >
-      <Container />
+      <Container {...{ value }} />
     </DateSelectorProvider>
   );
 };

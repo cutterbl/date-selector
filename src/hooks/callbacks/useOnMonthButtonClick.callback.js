@@ -1,6 +1,14 @@
 import { useCallback } from 'react';
 
-export default function ({ activeDate, setShowCal, setActiveDate, setView }) {
+import { isInRange } from '../../picker/utils/luxonUtils';
+
+export default function ({
+  range,
+  activeDate,
+  setShowCal,
+  setActiveDate,
+  setView,
+}) {
   return useCallback(
     (date) => {
       const daysInMonth = date.daysInMonth;
@@ -9,12 +17,12 @@ export default function ({ activeDate, setShowCal, setActiveDate, setView }) {
         month: date.month,
       };
       const newDate = date.set(set);
-      if (+newDate !== +activeDate) {
+      if (!isInRange({ fromDate: newDate, range })) {
         setShowCal(false);
       }
       setActiveDate((prev) => (+newDate !== +prev ? newDate : prev));
       setView('day');
     },
-    [activeDate, setShowCal, setActiveDate, setView]
+    [range, activeDate, setShowCal, setActiveDate, setView]
   );
 }

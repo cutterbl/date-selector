@@ -30,7 +30,6 @@ export function DateSelectorProvider({
   const values = useMemo(
     () => ({
       today,
-      value,
       activeDate,
       setActiveDate,
       showCal,
@@ -49,7 +48,6 @@ export function DateSelectorProvider({
     }),
     [
       today,
-      value,
       activeDate,
       setActiveDate,
       showCal,

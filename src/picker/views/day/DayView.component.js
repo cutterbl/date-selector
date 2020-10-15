@@ -4,18 +4,12 @@ import { useDateSelector } from '../../../context/DateSelector.context';
 import DayButtonWrapper from './DayButtonWrapper.component';
 import useOnClick from '../../../hooks/callbacks/useOnDayButtonClick.callback';
 
-export default function DayView() {
-  const {
-    setShowCal,
-    range,
-    activeDate,
-    setActiveDate,
-    onChange,
-  } = useDateSelector();
+export default function DayView({ value }) {
+  const { setShowCal, range, setActiveDate, onChange } = useDateSelector();
 
   const handleOnClick = useOnClick({
+    range,
     setShowCal,
-    activeDate,
     setActiveDate,
     onChange,
   });
@@ -25,6 +19,7 @@ export default function DayView() {
       {range?.map((date) => (
         <DayButtonWrapper
           {...{
+            value,
             date,
             handleOnClick,
           }}
