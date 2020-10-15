@@ -22,6 +22,8 @@ import DateSelector from '@cxing/date-selector';
 
 All date values are expected to be [Luxon](https://moment.github.io/luxon/) `DateTime` objects. Luxon is the modern replacement for [Moment.js](https://momentjs.com/), developed by the same team.
 
+**NOTE:** `@cxing/date-selector` is an ES module, and has no UMD/CJS flavor. Bundlers like Webpack or Rollup will have no problem with it, but if you need it direct in the browser you'll need `<script type="module">`
+
 ## I18n, Timezones, and Browser Support
 
 Because we're using [Luxon](https://moment.github.io/luxon/), under the hood, you get full i18n and timezone support when you use the `defaultDate` prop (unless, of course, you're using IE). Make sure to read the rest of the documentation, where we give an example of this.
