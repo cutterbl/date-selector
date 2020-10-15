@@ -2,7 +2,6 @@
   "name": "@cxing/date-selector",
   "version": "0.0.20",
   "description": "A React date selector control using Luxon",
-  "main": "dist/date-selector.js",
   "module": "dist/date-selector.es.js",
   "scripts": {
     "release": "standard-version",
@@ -49,7 +48,6 @@
     "autoprefixer": "9.8.0",
     "babel-eslint": "10.1.0",
     "babel-loader": "^8.1.0",
-    "babel-preset-react-app": "9.1.2",
     "cross-env": "7.0.2",
     "eslint": "6.8.0",
     "eslint-config-react-app": "5.2.1",
@@ -181,8 +179,8 @@
   },
   "babel": {
     "presets": [
-      "@babel/preset-env",
-      "react-app"
+      "@babel/env",
+      "@babel/preset-react"
     ],
     "ignore": [
       "**/node_modules"
@@ -191,7 +189,7 @@
       "test": {
         "presets": [
           [
-            "@babel/preset-env",
+            "@babel/env",
             {
               "modules": "commonjs",
               "targets": {
@@ -199,7 +197,7 @@
               }
             }
           ],
-          "react-app"
+          "preset-react"
         ]
       }
     }

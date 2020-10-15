@@ -18,17 +18,8 @@ export default [
     output: [
       {
         file: pkg.module,
-        format: 'es',
         banner: banner,
         sourcemap: true,
-        exports: 'named',
-      },
-      {
-        file: pkg.main,
-        format: 'cjs',
-        banner: banner,
-        sourcemap: true,
-        exports: 'named',
       },
     ],
     plugins: [
@@ -60,7 +51,7 @@ export default [
         exclude: [/node_modules/, /ul-ui-core/, /.scss$/],
       }),
       babel({
-        babelHelpers: 'runtime',
+        //babelHelpers: 'runtime',
         exclude: ['/node_modules/**'],
       }),
       //sizeSnapshot(),

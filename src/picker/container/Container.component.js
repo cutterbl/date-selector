@@ -1,5 +1,4 @@
 import React from 'react';
-import classnames from 'classnames';
 
 import Header from '../header/Header.component';
 import Views from '../views/Views.component';
@@ -19,11 +18,7 @@ export default function Container() {
   useUpdateRange({ activeDate, view, setRange, setShowCal, onChange });
 
   return (
-    <div
-      className={classnames(styles.container, {
-        [styles.days]: view === 'day',
-      })}
-    >
+    <div className={styles.container}>
       <Header />
       <Views />
     </div>
