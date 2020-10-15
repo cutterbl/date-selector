@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import { Duration } from 'luxon';
 
 import { useDateSelector } from '../../context/DateSelector.context';
@@ -55,15 +56,21 @@ export default function Header() {
   return (
     <div className={styles.header}>
       <PreviousButton
+        className={classnames(styles.button, styles.navButton)}
         ariaButtonLabel={previousButtonARIALabel}
         onClick={prev}
       />
       <LabelButton
+        className={classnames(styles.button, styles.label)}
         buttonLabel={label}
         buttonARIALabel={labelButtonARIALabel}
         onClick={onClick}
       />
-      <NextButton ariaButtonLabel={nextButtonARIALabel} onClick={next} />
+      <NextButton
+        className={classnames(styles.button, styles.navButton)}
+        ariaButtonLabel={nextButtonARIALabel}
+        onClick={next}
+      />
     </div>
   );
 }

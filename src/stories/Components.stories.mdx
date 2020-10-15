@@ -1,0 +1,40 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Custom Components" />
+
+# Custom Component Overrides
+
+There are a number of internal components that can be overridden
+
+- LabelButton - The button in the middle of the header to move from one
+  view to another
+- PreviousButton - The button to move backwards in a view
+- PreviousButton - The button to move forwards in a view
+- DayButton - The button, in the 'day' view, to select a specific 'date'
+  to set the `value`
+- MonthButton - The button, in the 'month' view, to change the month
+  displayed in the 'day' view
+- YearButton - The button, in the 'year' view, to change the year
+  displayed in the 'month' view
+
+There's probably very little need for you to replace these buttons in
+any way, but you can if you wish. These components will receive the
+props they need to do the necessary logic within the component.
+
+Replacing the components is easy, by using the `components` prop. You can replace one, several, or all of them at once. First, write your component
+
+```js
+export const MyCustomLabelButton = (props) => <someelement {...props} />;
+```
+
+Then you include it in your props.
+
+```js
+<DateSelector
+  components={{
+    labelButton: MyCustomLabelButton,
+  }}
+/>
+```
+
+The props passed down include things like ARIA labels, `onClick` handlers and the like. My suggestion is that you grab the actual component from [source code](https://github.com/cutterbl/date-selector) to use as a template.

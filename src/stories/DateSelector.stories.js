@@ -12,6 +12,14 @@ export default {
       page: mdx,
     },
   },
+  decorators: [
+    (Story) => (
+      <Fragment>
+        <div>For more info, click the 'Docs' Tab ^</div>
+        <Story />
+      </Fragment>
+    ),
+  ],
 };
 
 export const Basic = () => {
@@ -26,7 +34,7 @@ export const Basic = () => {
     </Fragment>
   );
 };
-Basic.storyName = 'The Control';
+Basic.storyName = 'the selector';
 
 export const DefaultDate = () => {
   const [value, setValue] = useState();
@@ -54,8 +62,8 @@ export const IsDateDisabled = () => {
   const isDateDisabled = useCallback((date) => date.day % 2, []);
   return (
     <Fragment>
-      <div>Function given disables every 'odd' day</div>
       <DateSelector {...{ value, onChange, isDateDisabled }} />
+      <div>Function given disables every 'odd' day</div>
       <div>
         Selected Value: {value && value.toLocaleString(DateTime.DATE_SHORT)}
       </div>
