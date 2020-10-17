@@ -1,4 +1,11 @@
 Changelog
+### 0.0.25 (2020-10-17)
+
+
+### Features
+
+* Move all styling to Emotion and eliminate SASS modules ([4c671d9](https://github.com/cutterbl/date-selector/commit/4c671d9f4ac1a31525f1f98f05853978ca5c6eb9))
+
 ### 0.0.24 (2020-10-15)
 
 ### 0.0.23 (2020-10-15)
