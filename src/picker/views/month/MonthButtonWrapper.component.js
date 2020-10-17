@@ -1,14 +1,22 @@
-import React, { useRef } from 'react';
-import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { DateTime } from 'luxon';
+/** @jsx jsx */
+import { useRef } from 'react';
+import { jsx } from '@emotion/core';
 
 import { useDateSelector } from '../../../context/DateSelector.context';
 import useFocusMonthButton from '../../../hooks/effects/useFocusMonthButton.effect';
-import styles from './MonthButton.module.scss';
+
+import {
+  wrapper,
+  isSamePeriod,
+  buildTodayMarker,
+  baseButton,
+  activeButton,
+  viewButtons,
+} from '../../styledefs.emotion';
 
 export default function MonthButtonWrapper({ date, handleOnClick }) {
   const {
+    view,
     today,
     activeDate,
     messages: { monthButtonARIALabel },
@@ -22,19 +30,19 @@ export default function MonthButtonWrapper({ date, handleOnClick }) {
 
   const onClick = () => handleOnClick(date);
 
-  const ariaButtonLabel = `${monthButtonARIALabel}${date.toFormat('MMMM')}`;
+  const ariaLabel = `${monthButtonARIALabel}${date.toFormat('MMMM')}`;
 
   return (
-    <div
-      className={classnames(styles.monthWrapper, {
-        [styles.activeDate]: +date?.month === +activeDate?.month,
-        [styles.thisDay]: +date?.month === +today?.month,
-      })}
-    >
+    <div css={[wrapper, buildTodayMarker({ today, activeDate, date, view })]}>
       <MonthButton
+        css={[
+          baseButton,
+          viewButtons[view],
+          isSamePeriod({ day1: date, day2: activeDate, view }) && activeButton,
+        ]}
         {...{
           buttonRef,
-          ariaButtonLabel,
+          ariaLabel,
           date,
           onClick,
         }}
@@ -42,7 +50,3 @@ export default function MonthButtonWrapper({ date, handleOnClick }) {
     </div>
   );
 }
-MonthButtonWrapper.propTypes = {
-  date: PropTypes.instanceOf(DateTime),
-  handleOnClick: PropTypes.func,
-};

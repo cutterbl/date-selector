@@ -1,14 +1,24 @@
-import React, { useRef } from 'react';
+/** @jsx jsx */
+import { useRef } from 'react';
+import { jsx } from '@emotion/core';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
 import { DateTime } from 'luxon';
 
 import { useDateSelector } from '../../../context/DateSelector.context';
 import useFocusYearButton from '../../../hooks/effects/useFocusYearButton.effect';
-import styles from './YearButton.module.scss';
+
+import {
+  wrapper,
+  isSamePeriod,
+  buildTodayMarker,
+  baseButton,
+  activeButton,
+  viewButtons,
+} from '../../styledefs.emotion';
 
 export default function YearButtonWrapper({ date, handleOnClick }) {
   const {
+    view,
     today,
     activeDate,
     messages: { yearButtonARIALabel },
@@ -22,19 +32,19 @@ export default function YearButtonWrapper({ date, handleOnClick }) {
 
   const onClick = () => handleOnClick(date);
 
-  const ariaButtonLabel = `${yearButtonARIALabel}${date.toFormat('yyyy')}`;
+  const ariaLabel = `${yearButtonARIALabel}${date.toFormat('yyyy')}`;
 
   return (
-    <div
-      className={classnames(styles.yearWrapper, {
-        [styles.activeDate]: +date?.year === +activeDate?.year,
-        [styles.thisDay]: +date?.year === +today?.year,
-      })}
-    >
+    <div css={[wrapper, buildTodayMarker({ today, activeDate, date, view })]}>
       <YearButton
+        css={[
+          baseButton,
+          viewButtons[view],
+          isSamePeriod({ day1: date, day2: activeDate, view }) && activeButton,
+        ]}
         {...{
           buttonRef,
-          ariaButtonLabel,
+          ariaLabel,
           date,
           onClick,
         }}

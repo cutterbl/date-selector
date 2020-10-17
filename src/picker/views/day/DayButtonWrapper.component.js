@@ -1,13 +1,24 @@
-import React, { useRef } from 'react';
-import classnames from 'classnames';
+/** @jsx jsx */
+import { useRef } from 'react';
+import { jsx } from '@emotion/core';
 
 import { useDateSelector } from '../../../context/DateSelector.context';
 import useFocusDayButton from '../../../hooks/effects/useFocusDayButton.effect';
-import styles from './DayButton.module.scss';
+
+import {
+  wrapper,
+  isSamePeriod,
+  buildTodayMarker,
+  baseButton,
+  activeButton,
+  valueButton,
+  viewButtons,
+} from '../../styledefs.emotion';
 
 export default function DayButtonWrapper({ value, date, handleOnClick }) {
   const {
     today,
+    view,
     activeDate,
     minDate,
     maxDate,
@@ -23,7 +34,7 @@ export default function DayButtonWrapper({ value, date, handleOnClick }) {
 
   const onClick = () => handleOnClick(date);
 
-  const ariaButtonLabel = `${dayButtonARIALabel}${date.toLocaleString()}`;
+  const ariaLabel = `${dayButtonARIALabel}${date.toLocaleString()}`;
 
   const disabled = !!(
     activeDate.month !== date.month ||
@@ -33,20 +44,20 @@ export default function DayButtonWrapper({ value, date, handleOnClick }) {
   );
 
   return (
-    <div
-      className={classnames(styles.dayWrapper, {
-        [styles.activeDate]: +date === +activeDate,
-        [styles.thisDay]: +date === +today,
-        [styles.valueDate]: +date?.ordinal === +value?.ordinal,
-      })}
-    >
+    <div css={[wrapper, buildTodayMarker({ today, activeDate, date, view })]}>
       <DayButton
+        css={[
+          baseButton,
+          viewButtons[view],
+          isSamePeriod({ day1: date, day2: activeDate, view }) && activeButton,
+          +date?.ordinal === +value?.ordinal && valueButton,
+        ]}
         {...{
           buttonRef,
           date,
           disabled,
           onClick,
-          ariaButtonLabel,
+          ariaLabel,
         }}
       />
     </div>

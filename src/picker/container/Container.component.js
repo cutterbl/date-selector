@@ -1,10 +1,11 @@
-import React from 'react';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 
 import Header from '../header/Header.component';
 import Views from '../views/Views.component';
 import { useDateSelector } from '../../context/DateSelector.context';
 import useUpdateRange from '../../hooks/effects/useUpdateRange.effect';
-import styles from './Container.module.scss';
+import { container } from '../styledefs.emotion';
 
 export default function Container({ value }) {
   const {
@@ -18,7 +19,7 @@ export default function Container({ value }) {
   useUpdateRange({ activeDate, view, setRange, setShowCal, onChange });
 
   return (
-    <div className={styles.container}>
+    <div css={container}>
       <Header />
       <Views {...{ value }} />
     </div>

@@ -1,12 +1,8 @@
 import React from 'react';
 
-export default function NextButton({ ariaButtonLabel, onClick, className }) {
+export default function NextButton({ ariaLabel, ...props }) {
   return (
-    <button
-      aria-label={ariaButtonLabel}
-      className={className}
-      onClick={onClick}
-    >
+    <button aria-label={ariaLabel} {...props}>
       {'>'}
     </button>
   );

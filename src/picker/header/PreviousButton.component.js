@@ -1,16 +1,8 @@
 import React from 'react';
 
-export default function PreviousButton({
-  ariaButtonLabel,
-  onClick,
-  className,
-}) {
+export default function PreviousButton({ ariaLabel, ...props }) {
   return (
-    <button
-      aria-label={ariaButtonLabel}
-      className={className}
-      onClick={onClick}
-    >
+    <button aria-label={ariaLabel} {...props}>
       {'<'}
     </button>
   );

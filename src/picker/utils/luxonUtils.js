@@ -1,5 +1,3 @@
-import { DateTime } from 'luxon';
-
 function createRange({ first, last, period = 'day' }) {
   if (!first || !last) return [];
   const range = [first];

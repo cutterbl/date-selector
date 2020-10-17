@@ -1,12 +1,13 @@
-import React from 'react';
-import classnames from 'classnames';
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 import { Duration } from 'luxon';
 
 import { useDateSelector } from '../../context/DateSelector.context';
 import useNext from '../../hooks/callbacks/useNext.callback';
 import usePrevious from '../../hooks/callbacks/usePrevious.callback';
 import useOnLabelClick from '../../hooks/callbacks/useOnLabelClick.callback';
-import styles from './Header.module.scss';
+
+import { header, navButton, labelButton } from '../styledefs.emotion';
 
 const conversions = {
   day: Duration.fromObject({ month: 1, conversionAccuracy: 'longterm' }),
@@ -54,21 +55,21 @@ export default function Header() {
   const prev = usePrevious({ setActiveDate, view, conversions });
 
   return (
-    <div className={styles.header}>
+    <div css={header}>
       <PreviousButton
-        className={classnames(styles.button, styles.navButton)}
-        ariaButtonLabel={previousButtonARIALabel}
+        css={navButton}
+        ariaLabel={previousButtonARIALabel}
         onClick={prev}
       />
       <LabelButton
-        className={classnames(styles.button, styles.label)}
+        css={labelButton}
         buttonLabel={label}
-        buttonARIALabel={labelButtonARIALabel}
+        ariaLabel={labelButtonARIALabel}
         onClick={onClick}
       />
       <NextButton
-        className={classnames(styles.button, styles.navButton)}
-        ariaButtonLabel={nextButtonARIALabel}
+        css={navButton}
+        ariaLabel={nextButtonARIALabel}
         onClick={next}
       />
     </div>

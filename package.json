@@ -22,6 +22,7 @@
   "author": "Steve 'Cutter' Blades",
   "license": "MIT",
   "dependencies": {
+    "@babel/runtime": "7.12.1",
     "classnames": "2.2.6",
     "luxon": "1.25.0",
     "prop-types": "15.7.2",
@@ -29,17 +30,17 @@
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "@babel/core": "7.11.6",
-    "@babel/plugin-proposal-nullish-coalescing-operator": "7.12.0",
-    "@babel/plugin-proposal-optional-chaining": "7.12.0",
-    "@babel/preset-env": "7.11.5",
-    "@babel/preset-react": "7.10.4",
+    "@babel/core": "7.12.1",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "7.12.1",
+    "@babel/plugin-proposal-optional-chaining": "7.12.1",
+    "@babel/plugin-transform-runtime": "7.12.1",
+    "@babel/preset-env": "7.12.1",
+    "@babel/preset-react": "7.12.1",
     "@commitlint/cli": "11.0.0",
     "@commitlint/config-conventional": "11.0.0",
     "@emotion/babel-preset-css-prop": "10.0.27",
     "@emotion/core": "10.0.35",
     "@rollup/plugin-babel": "5.2.1",
-    "@rollup/plugin-commonjs": "15.1.0",
     "@rollup/plugin-json": "4.1.0",
     "@rollup/plugin-node-resolve": "9.0.0",
     "@storybook/addon-actions": "^6.0.26",
@@ -50,7 +51,6 @@
     "@storybook/theming": "6.0.26",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
-    "autoprefixer": "9.8.0",
     "babel-eslint": "10.1.0",
     "babel-loader": "^8.1.0",
     "cross-env": "7.0.2",
@@ -63,16 +63,12 @@
     "eslint-plugin-react-hooks": "2.5.1",
     "git-branch-is": "4.0.0",
     "husky": "4.3.0",
-    "node-sass": "4.14.1",
-    "postcss-assets": "5.0.0",
     "prettier": "2.1.2",
     "react-is": "^16.13.1",
     "rollup": "2.29.0",
     "rollup-plugin-cleanup": "3.2.1",
     "rollup-plugin-clear": "2.0.7",
     "rollup-plugin-eslint": "7.0.0",
-    "rollup-plugin-postcss": "3.1.8",
-    "sass-loader": "10.0.3",
     "standard-version": "9.0.0"
   },
   "husky": {
@@ -185,9 +181,16 @@
   "babel": {
     "presets": [
       "@babel/env",
-      "@babel/preset-react"
+      "@babel/preset-react",
+      "@emotion/babel-preset-css-prop"
     ],
     "plugins": [
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "corejs": 3
+        }
+      ],
       "@babel/plugin-proposal-nullish-coalescing-operator",
       "@babel/plugin-proposal-optional-chaining"
     ],

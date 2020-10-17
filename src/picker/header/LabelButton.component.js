@@ -2,16 +2,11 @@ import React from 'react';
 
 export default function LabelButton({
   buttonLabel: label,
-  buttonARIALabel,
-  onClick,
-  className,
+  ariaLabel,
+  ...props
 }) {
   return (
-    <button
-      aria-label={buttonARIALabel}
-      className={className}
-      onClick={onClick}
-    >
+    <button aria-label={ariaLabel} {...props}>
       {label}
     </button>
   );
