@@ -4,6 +4,12 @@
   "description": "A React date selector control using Luxon",
   "main": "dist/date-selector.cjs.js",
   "module": "dist/date-selector.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/date-selector.es.js",
+      "require": "./dist/date-selector.cjs.js"
+    }
+  },
   "scripts": {
     "release": "standard-version",
     "build": "cross-env NODE_ENV=development rollup -c ./configs/rollup.config.js",
@@ -19,6 +25,11 @@
     "Control",
     "Luxon"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cutterbl/date-selector.git"
+  },
+  "homepage": "https://cutterscrossing.com/date-selector",
   "author": "Steve 'Cutter' Blades",
   "license": "MIT",
   "dependencies": {
