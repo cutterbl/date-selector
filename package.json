@@ -36,6 +36,9 @@
     "type": "git",
     "url": "https://github.com/cutterbl/date-selector.git"
   },
+  "bugs": {
+    "url": "https://github.com/cutterbl/date-selector/issues"
+  },
   "homepage": "https://cutterscrossing.com/date-selector",
   "author": "Steve 'Cutter' Blades",
   "license": "MIT",
