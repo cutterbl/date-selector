@@ -1,6 +1,6 @@
 {
   "name": "@cxing/date-selector",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "A React date selector control using Luxon",
   "main": "dist/date-selector.cjs.js",
   "module": "dist/date-selector.es.js",
