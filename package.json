@@ -10,6 +10,9 @@
       "require": "./dist/date-selector.cjs.js"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "release": "standard-version",
     "build": "cross-env NODE_ENV=development rollup -c ./configs/rollup.config.js",
@@ -20,10 +23,14 @@
     "deploy-storybook": "storybook-to-ghpages"
   },
   "keywords": [
-    "React",
-    "Date",
-    "Control",
-    "Luxon"
+    "react",
+    "date",
+    "timezone",
+    "locale",
+    "i18n",
+    "selector",
+    "control",
+    "luxon"
   ],
   "repository": {
     "type": "git",
