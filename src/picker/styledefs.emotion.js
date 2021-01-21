@@ -21,6 +21,9 @@ export const baseButton = {
   borderRadius: 3,
   backgroundColor: 'transparent',
   position: 'relative',
+  '&:hover': {
+    backgroundColor: '#ddd',
+  },
 };
 
 const todayMarker = {
@@ -90,6 +93,9 @@ export const navButton = {
 export const labelButton = {
   ...headerButton,
   flexGrow: 1,
+  '&:hover': {
+    textDecoration: 'underline',
+  },
 };
 
 /** Styles used by the DayButton */
@@ -97,6 +103,9 @@ export const labelButton = {
 export const activeButton = {
   backgroundColor: 'cornflowerblue',
   color: 'white',
+  '&:hover': {
+    backgroundColor: 'cornflowerblue',
+  },
 };
 
 export const valueButton = {
