@@ -4,7 +4,6 @@ module.exports = {
   webpackFinal: async (config) => {
     config.module.rules[0].use[0].options.presets = [
       require.resolve('@babel/preset-env'),
-      require.resolve('@babel/preset-typescript'),
       [
         require.resolve('@babel/preset-react'),
         {
