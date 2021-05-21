@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export default function ({ buttonRef, date, activeDate }) {
+export default function useFocusDayButton({ buttonRef, date, activeDate }) {
   useEffect(() => {
     const { current } = buttonRef ?? {};
     if (current && +date === +activeDate) {

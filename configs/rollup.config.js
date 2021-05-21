@@ -1,5 +1,6 @@
 import path from 'path';
 import resolve from '@rollup/plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
 import babel from '@rollup/plugin-babel';
 import clear from 'rollup-plugin-clear';
 import json from '@rollup/plugin-json';
@@ -12,7 +13,7 @@ const externalDependencies = Object.keys(pkg.dependencies).filter(
 );
 const banner = `/* ${pkg.name} version ${pkg.version} © 2020 Cutter's Crossing */`;
 
-export default [
+const config = [
   {
     input: path.join(__dirname, '../src/index.js'),
     context: 'this',
@@ -41,6 +42,9 @@ export default [
         //only: [/^\.{0,2}\//],
         browser: true,
       }),
+      commonjs({
+        include: ['node_modules/**'],
+      }),
       json(),
       eslint({
         // second entry covers 'npm link' situations
@@ -56,3 +60,4 @@ export default [
     external: [...externalDependencies, /@babel\/runtime/],
   },
 ];
+export default config;

@@ -6,7 +6,7 @@ const decision = {
   year: 'month',
 };
 
-export default function ({ setShowCal, setView }) {
+export default function useOnLabelClick({ setShowCal, setView }) {
   return useCallback(() => {
     setShowCal(false);
     setView((prev) => decision[prev]);

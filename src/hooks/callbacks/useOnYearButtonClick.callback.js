@@ -1,6 +1,11 @@
 import { useCallback } from 'react';
 
-export default function ({ activeDate, setShowCal, setActiveDate, setView }) {
+export default function useOnYearButtonClick({
+  activeDate,
+  setShowCal,
+  setActiveDate,
+  setView,
+}) {
   return useCallback(
     (date) => {
       const daysInMonth = date.daysInMonth;

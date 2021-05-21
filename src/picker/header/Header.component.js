@@ -1,5 +1,5 @@
-/** @jsx jsx */
-import { jsx } from '@emotion/core';
+// eslint-disable-next-line no-unused-vars
+import { jsx } from '@emotion/react';
 import { Duration } from 'luxon';
 
 import { useDateSelector } from '../../context/DateSelector.context';

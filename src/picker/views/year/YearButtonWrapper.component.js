@@ -1,6 +1,6 @@
-/** @jsx jsx */
+// eslint-disable-next-line no-unused-vars
+import { jsx } from '@emotion/react';
 import { useRef } from 'react';
-import { jsx } from '@emotion/core';
 import PropTypes from 'prop-types';
 import { DateTime } from 'luxon';
 

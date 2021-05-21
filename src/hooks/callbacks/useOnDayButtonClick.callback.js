@@ -2,7 +2,12 @@ import { useCallback } from 'react';
 
 import { isInRange } from '../../picker/utils/luxonUtils';
 
-export default function ({ range, setShowCal, setActiveDate, onChange }) {
+export default function useOnDayButtonClick({
+  range,
+  setShowCal,
+  setActiveDate,
+  onChange,
+}) {
   return useCallback(
     (date) => {
       // don't hide it unless it changes

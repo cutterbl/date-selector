@@ -48,7 +48,7 @@ export function isSamePeriod({ day1, day2, view }) {
     return +day1 === +day2;
   }
   if (view === 'month') {
-    console.log('current month ', day1?.month === day2?.month);
+    //console.log('current month ', day1?.month === day2?.month);
     return day1?.month === day2?.month;
   }
   if (view === 'year') {

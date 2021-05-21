@@ -3,12 +3,12 @@
  */
 import DateSelector from './DateSelector.component';
 
-import { name as moduleName, version as packageVersion } from '../package.json';
+//import { name as moduleName, version as packageVersion } from '../package.json';
 
 export default DateSelector;
-DateSelector.version = packageVersion;
+//DateSelector.version = packageVersion;
 
-export { moduleName, packageVersion };
+//export { moduleName, packageVersion };
 
 export { getRange, mergeDates, isInRange } from './picker/utils/luxonUtils';
 

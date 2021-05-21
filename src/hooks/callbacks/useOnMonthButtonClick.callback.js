@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 
 import { isInRange } from '../../picker/utils/luxonUtils';
 
-export default function ({
+export default function useOnMonthButtonClick({
   range,
   activeDate,
   setShowCal,
