@@ -21,7 +21,7 @@ export const baseButton = {
   borderRadius: 3,
   backgroundColor: 'transparent',
   position: 'relative',
-  '&:hover': {
+  '&:hover:not([disabled])': {
     backgroundColor: '#ddd',
   },
 };
@@ -76,7 +76,22 @@ export function buildTodayMarker({ today, activeDate, date, view }) {
 export const header = {
   display: 'flex',
   flexDirection: 'row',
-  alignItems: 'stretch',
+  justifyContent: 'space-between',
+};
+
+export const headerFields = {
+  borderColor: 'transparent',
+  color: 'cornflowerblue',
+};
+
+export const headerSelect = {
+  appearance: 'none',
+  ':hover': { borderColor: 'inherit', color: 'inherit', appearance: 'auto' },
+};
+
+export const headerNumberField = {
+  border: '1px solid transparent',
+  ':hover': { borderColor: '#000', color: 'inherit' },
 };
 
 export const headerButton = {

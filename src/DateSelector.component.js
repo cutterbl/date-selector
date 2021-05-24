@@ -1,4 +1,3 @@
-//import React from 'react';
 import PropTypes from 'prop-types';
 import { DateTime } from 'luxon';
 
@@ -7,13 +6,13 @@ import { Container } from './picker';
 
 const DateSelector = ({
   defaultDate = DateTime.local().startOf('day'),
-  defaultView = 'day',
   value,
   minDate,
   maxDate,
   messages,
   components,
   onChange = () => {},
+  onError = () => {},
   isDateDisabled = () => false,
 } = {}) => {
   return (
@@ -23,10 +22,10 @@ const DateSelector = ({
         value,
         minDate,
         maxDate,
-        defaultView,
         messages,
         components,
         onChange,
+        onError,
         isDateDisabled,
       }}
     >
@@ -39,10 +38,10 @@ DateSelector.propTypes = {
   value: PropTypes.instanceOf(DateTime),
   minDate: PropTypes.instanceOf(DateTime),
   maxDate: PropTypes.instanceOf(DateTime),
-  defaultView: PropTypes.oneOf(['day', 'month', 'year']),
   messages: PropTypes.object,
   components: PropTypes.object,
   onChange: PropTypes.func,
+  onError: PropTypes.func,
   isDateDisabled: PropTypes.func,
 };
 

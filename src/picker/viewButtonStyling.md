@@ -177,10 +177,6 @@ const viewButtons = {
     width: '2rem',
     height: '2rem'
   },
-  month: {
-    width: '25%',
-    height: '3.33333rem'
-  },
   height: {
     width: '20%',
     height: '3.33333rem'
@@ -189,7 +185,7 @@ const viewButtons = {
 
 css={[
   baseButton,
-  viewButtons[view],
+  viewButtons.day,
   +date === +activeDate && activeButton,
   +date?.ordinal === +value?.ordinal & valueButton
 ]}

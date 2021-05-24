@@ -7,13 +7,14 @@ import { Meta } from '@storybook/addon-docs/blocks';
 All of the 'date' features, themselves, are internationalized according the `locale` and `timezone` of your `defaultDate` prop. But, there are ARIA labels, attached to various buttons in the app, that are not internationalized. For this reason, we've provided facility for you to override these messages, using the `messages` prop. Here is a complete list of the current messages.
 
 - dayButtonARIALabel: 'Sets date to ' (date automatically appended)
-- monthButtonARIALabel: 'Sets month to ' (month automatically appended)
-- yearButtonARIALabel: 'Sets year to ' (year automatically appended)
 - previousButtonARIALabel: 'Show the previous month'
 - nextButtonARIALabel: 'Show the next month'
-- dayHeaderARIALabel: 'Change the month'
 - monthHeaderARIALabel: 'Change the year'
 - yearHeaderARIALabel: 'Change the month'
+- errors
+  - minDate: 'You have tried to set a date before your minimum date',
+  - maxDate: 'You have tried to set a date after you maximum date',
+  - disabledDate: 'You have tried to set the date to a disabled date'
 
 You override these messages using the `messages` prop:
 

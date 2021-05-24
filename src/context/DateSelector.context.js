@@ -1,8 +1,15 @@
-//import React, { createContext, useState, useContext, useMemo } from 'react';
-import { createContext, useState, useContext, useMemo } from 'react';
+import {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  useMemo,
+  useCallback,
+} from 'react';
 import PropTypes from 'prop-types';
-import { DateTime } from 'luxon';
+import { DateTime, Info } from 'luxon';
 
+import useSelectorReducer from './useSelectorReducer.hook';
 import { mixMessages } from '../picker/utils';
 import { mixComponents } from '../components';
 
@@ -13,59 +20,116 @@ export function DateSelectorProvider({
   value,
   minDate,
   maxDate,
-  defaultView,
   messages,
   components,
   onChange,
+  onError,
   isDateDisabled,
   ...props
 }) {
   const [today] = useState(
     defaultDate?.startOf('day') || DateTime.local().startOf('day')
   );
-  const [activeDate, setActiveDate] = useState(value?.startOf('day') || today);
-  const [showCal, setShowCal] = useState(false);
-  const [view, setView] = useState(defaultView);
-  const [range, setRange] = useState();
+  const [state, dispatch] = useSelectorReducer({ today, value });
 
-  const values = useMemo(
-    () => ({
+  const onNext = useCallback(() => dispatch({ type: 'NEXT' }), [dispatch]);
+  const onPrevious = useCallback(
+    () => dispatch({ type: 'PREVIOUS' }),
+    [dispatch]
+  );
+  const reset = useCallback(() => dispatch({ type: 'RESET' }), [dispatch]);
+  const setActiveDate = useCallback(
+    (date) => dispatch({ type: 'SET', date }),
+    [dispatch]
+  );
+  const onMonthChange = useCallback(
+    ({ target: { value: month } }) => {
+      const newDate = state.activeDate.set({ month });
+      setActiveDate(newDate);
+    },
+    [state.activeDate, setActiveDate]
+  );
+  const onYearChange = useCallback(
+    ({ target: { value: year } }) => {
+      const newDate = state.activeDate.set({ year });
+      setActiveDate(newDate);
+    },
+    [state.activeDate, setActiveDate]
+  );
+
+  useEffect(() => {
+    if (!value) {
+      reset();
+    } else {
+      const valToSet = value.startOf('day');
+      if (minDate && +valToSet < +minDate) {
+        onError(messages.errors.minDate);
+      } else if (maxDate && +valToSet > +maxDate) {
+        onError(messages.errors.maxDate);
+      } else if (isDateDisabled(valToSet)) {
+        onError(messages.errors.disabledDate);
+      } else {
+        setActiveDate(valToSet);
+      }
+    }
+  }, [
+    value,
+    minDate,
+    maxDate,
+    messages,
+    isDateDisabled,
+    onError,
+    reset,
+    setActiveDate,
+  ]);
+
+  const values = useMemo(() => {
+    return {
       today,
-      activeDate,
-      setActiveDate,
-      showCal,
-      setShowCal,
-      view,
-      setView,
-      range,
-      setRange,
       minDate,
       maxDate,
+
+      activeDate: state.activeDate,
+      range: state.range,
+      months: Info.months('long', { locale: state.activeDate.locale }).map(
+        (it, ind) => ({
+          value: ind + 1,
+          label: it,
+        })
+      ),
+
+      onNext,
+      onPrevious,
+      onMonthChange,
+      onYearChange,
+      reset,
+      setActiveDate,
 
       messages: mixMessages({ messages }),
       components: mixComponents({ components }),
       onChange,
       isDateDisabled,
-    }),
-    [
-      today,
-      activeDate,
-      setActiveDate,
-      showCal,
-      setShowCal,
-      view,
-      setView,
-      range,
-      setRange,
-      minDate,
-      maxDate,
+    };
+  }, [
+    today,
+    minDate,
+    maxDate,
 
-      messages,
-      components,
-      onChange,
-      isDateDisabled,
-    ]
-  );
+    state.activeDate,
+    state.range,
+
+    onNext,
+    onPrevious,
+    onMonthChange,
+    onYearChange,
+    reset,
+    setActiveDate,
+
+    messages,
+    components,
+    onChange,
+    isDateDisabled,
+  ]);
   return <DateSelectorContext.Provider value={values} {...props} />;
 }
 
@@ -74,8 +138,8 @@ DateSelectorProvider.propTypes = {
   value: PropTypes.instanceOf(DateTime),
   minDate: PropTypes.instanceOf(DateTime),
   maxDate: PropTypes.instanceOf(DateTime),
-  defaultView: PropTypes.oneOf(['day', 'month', 'year']),
   messages: PropTypes.object,
+  onError: PropTypes.func,
   onChange: PropTypes.func,
   isDateDisabled: PropTypes.func,
 };
