@@ -2,7 +2,7 @@ module.exports = function (api) {
   api.cache(false);
   const config = {
     presets: [
-      ['@babel/preset-env', { loose: true }],
+      '@babel/preset-env',
       [
         '@babel/preset-react',
         { runtime: 'automatic', importSource: '@emotion/react' },
